@@ -307,10 +307,10 @@ contract Referee is Initializable, AccessControlEnumerableUpgradeable {
         uint256 maxSupply = Xai(xaiAddress).MAX_SUPPLY();
         require(maxSupply > totalSupply, "There are no more tiers, we are too close to the end");
 
-        uint256 tier = log2(maxSupply / (maxSupply - totalSupply));
+        uint256 tier = log2(maxSupply / (maxSupply - totalSupply)); // calculate which tier we are in starting from 0
         require(tier < 30, "There are no more valuable tiers");
 
-        uint256 emissionTier = maxSupply - (maxSupply / (2**(tier + 1)));
+        uint256 emissionTier = maxSupply / (2**(tier + 1)); // equal to the amount of tokens that are emitted during this tier
 
         // determine what the size of the emission is based on each challenge having an estimated static length
         return (emissionTier / 17520, emissionTier);
@@ -408,7 +408,7 @@ contract Referee is Initializable, AccessControlEnumerableUpgradeable {
      * @param _challengeId The ID of the challenge to look up.
      * @return The challenge corresponding to the given ID.
      */
-    function getChallenge(uint64 _challengeId) public view returns (Challenge memory) {
+    function getChallenge(uint256 _challengeId) public view returns (Challenge memory) {
         require(_challengeId < challengeCounter, "challenge with this id, has not been created.");
         return challenges[_challengeId];
     }

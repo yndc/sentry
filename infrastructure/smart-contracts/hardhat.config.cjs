@@ -40,7 +40,7 @@ const config = {
       gasPrice: 20000000000,
     },
     arbitrumOne: {
-      url: "https://tame-alpha-violet.arbitrum-mainnet.quiknode.pro/d55a31b32f04c82b0e1bcb77f1fc6dcf53147f2a/",
+      url: "https://arb1.arbitrum.io/rpc",
       accounts: {
         mnemonic: process.env.MNEMONIC,
         count: 30,

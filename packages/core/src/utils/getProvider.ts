@@ -22,6 +22,6 @@ export function getProvider(_rpcUrl?: string): ethers.JsonRpcProvider {
         const providersCount = Object.keys(providers).length
         if (providersCount == 0)
             throw new Error("No RPC provider is provided")
-        return providers[Math.floor(Math.random() * providersCount)]
+        return providers[Object.keys(providers)[Math.floor(Math.random() * providersCount)]];
     }
 }

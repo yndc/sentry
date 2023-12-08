@@ -1,0 +1,26 @@
+{
+    "name": "@sentry/sentry-node-daemon",
+    "version": "1.0.0",
+    "description": "",
+    "keywords": [],
+    "license": "UNLICENSED",
+    "author": "",
+    "type": "module",
+    "main": "dist/index.js",
+    "bin": "build/sentry-node-daemon.js",
+    "scripts": {
+        "build": "npm run compile && npm run transpile && pkg ./build/sentry-node-daemon.js --targets=node18-linux-x64,node18-macos-x64,node18-win-x64 --out-path=release",
+        "clean": "rimraf dist && rimraf release && rimraf build && rimraf tsconfig.tsbuildinfo",
+        "compile": "tsc",
+        "lint": "eslint . --ext .ts,.tsx",
+        "start": "node dist/index.js",
+        "transpile": "esbuild --bundle --outfile=./build/sentry-node-daemon.js --platform=node dist/index.js"
+    },
+    "dependencies": {
+        "@sentry/core": "workspace:*"
+    },
+    "devDependencies": {
+        "esbuild": "^0.19.4",
+        "pkg": "^5.8.1"
+    }
+}
